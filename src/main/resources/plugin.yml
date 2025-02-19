@@ -1,0 +1,55 @@
+name: Charter
+description: The basics for your server.
+version: '${version ?: '0.1-SNAPSHOT'}'
+main: me.ilynxcat.charter.CharterPlugin
+api-version: '1.21'
+authors: [ iLynxcat <i@ilynxcat.me> ]
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:2.1.10
+default-permission: op
+permissions:
+  # /charter
+  charter.version:
+    description: Allowed to view Charter version
+    default: true
+  charter.reload:
+    description: Allowed to reload Charter configuration
+  # /rules
+  charter.rules:
+    description: Allowed to view /rules
+    default: true
+  # /broadcast
+  charter.broadcast:
+    description: Allowed to use /broadcast
+    children:
+      charter.broadcast.raw: false
+  # /broadcastraw
+  charter.broadcast.raw:
+    description: Allowed to use /broadcastraw
+  # /fly
+  charter.fly:
+    description: Allowed to use /fly
+  # /gamemode
+  charter.gamemode:
+    description: Allowed to use /gamemode
+    children:
+      charter.gamemode.survival: true
+      charter.gamemode.creative: true
+      charter.gamemode.adventure: true
+      charter.gamemode.spectator: true
+  charter.gamemode.survival:
+    description: Allowed to set gamemode to survival
+  charter.gamemode.creative:
+    description: Allowed to set gamemode to creative
+  charter.gamemode.adventure:
+    description: Allowed to set gamemode to adventire
+  charter.gamemode.spectator:
+    description: Allowed to set gamemode to spectator
+  # /age
+  charter.age:
+    description: Allowed to use /age
+    default: true
+  # /seen
+  charter.seen:
+    description: Allowed to use /seen
+    default: true
