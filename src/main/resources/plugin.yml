@@ -4,6 +4,7 @@ version: '${version ?: '0.1-SNAPSHOT'}'
 main: me.ilynxcat.charter.CharterPlugin
 api-version: '1.21'
 authors: [ iLynxcat <i@ilynxcat.me> ]
+folia-supported: true
 libraries:
   - org.jetbrains.kotlin:kotlin-stdlib:2.1.10
 default-permission: op
