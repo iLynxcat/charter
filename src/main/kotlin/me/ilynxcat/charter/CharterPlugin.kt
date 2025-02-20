@@ -1,21 +1,18 @@
 package me.ilynxcat.charter
 
-import io.papermc.paper.command.brigadier.Commands
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents
 import me.ilynxcat.charter.commands.*
-import me.ilynxcat.charter.commands.BaseCommand
-import me.ilynxcat.charter.commands.BroadcastCommand
-import me.ilynxcat.charter.commands.BroadcastRawCommand
-import me.ilynxcat.charter.commands.ICharterCommand
 import me.ilynxcat.charter.events.FlightSafetyListener
 import me.ilynxcat.charter.events.ICharterListener
 import me.ilynxcat.charter.events.PlayerWelcomeListener
+import me.ilynxcat.charter.managers.ChatModerationManager
 import me.ilynxcat.charter.managers.FlightSafetyManager
 import org.bukkit.plugin.java.JavaPlugin
 
 class CharterPlugin : JavaPlugin() {
+	val chatModeration = ChatModerationManager(this)
+
 	internal val config = CharterConfiguration(this)
-	// TODO: move this from the command itself to a separate FlightManager or something
 	internal val flightSafety = FlightSafetyManager(this)
 
 	private val events: Array<ICharterListener> = arrayOf(
@@ -49,4 +46,8 @@ class CharterPlugin : JavaPlugin() {
 	}
 
 	override fun onDisable() {}
+
+	private fun setupDatabase() {
+		TODO("Implement database setup")
+	}
 }
