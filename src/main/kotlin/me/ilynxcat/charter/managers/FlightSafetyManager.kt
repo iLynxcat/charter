@@ -29,10 +29,10 @@ internal class FlightSafetyManager(private val plugin: CharterPlugin) {
 		val playSounds = plugin.config.flightSafeLandSoundsEnabled
 		var ticksFalling: Int = 0
 
-		plugin.server.scheduler.runTaskTimer(plugin, { task ->
+		player.scheduler.runAtFixedRate(plugin, { task ->
 			if (!inProgressSafeLandings.contains(player.uniqueId)) {
 				task.cancel()
-				return@runTaskTimer
+				return@runAtFixedRate
 			}
 
 			// TODO: make max safe fall seconds configurable
@@ -50,10 +50,10 @@ internal class FlightSafetyManager(private val plugin: CharterPlugin) {
 					player.playSound(hasLandedPingLow)
 					// wait 0.15sec
 					// then high chime
-					plugin.server.scheduler.runTaskLater(plugin, { _ -> player.playSound(hasLandedPingHigh) }, 3)
+					player.scheduler.runDelayed(plugin, { _ -> player.playSound(hasLandedPingHigh) }, null, 3)
 				}
 				task.cancel()
-				return@runTaskTimer
+				return@runAtFixedRate
 			}
 
 			// every second play a tick
@@ -63,7 +63,7 @@ internal class FlightSafetyManager(private val plugin: CharterPlugin) {
 			}
 
 			ticksFalling++
-		}, 0, 1)
+		}, null, 1, 1)
 		return
 	}
 
