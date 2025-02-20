@@ -25,6 +25,8 @@ internal data class CharterConfiguration(private val plugin: CharterPlugin) {
 		config.addDefault("player-time.enabled", true)
 		config.addDefault("player-time.age.enabled", true)
 		config.addDefault("player-time.seen.enabled", true)
+		config.addDefault("moderation.enabled", true)
+		config.addDefault("moderation.mute.enabled", true)
 		config.options().copyDefaults(true)
 		plugin.saveConfig()
 	}
@@ -65,4 +67,9 @@ internal data class CharterConfiguration(private val plugin: CharterPlugin) {
 		get() = playerTimeEnabled && config.getBoolean("player-time.age.enabled")
 	val playerTimeSeenEnabled: Boolean
 		get() = playerTimeEnabled && config.getBoolean("player-time.seen.enabled")
+
+	val moderationEnabled: Boolean
+		get() = config.getBoolean("moderation.enabled")
+	val moderationMuteEnabled: Boolean
+		get() = moderationEnabled && config.getBoolean("moderation.mute.enabled")
 }
